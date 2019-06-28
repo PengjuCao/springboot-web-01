@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cpj.mapper.EmployeeMapper">
+
+    <resultMap type="com.cpj.entities.Employee" id="getEmployee">
+
+        <id property="id" column="id"/>
+        <result property="lastName" column="lastName"/>
+        <result property="email" column="email"/>
+        <result property="gender" column="gender"/>
+        <result property="birth" column="birth"/>
+        <result property="did" column="did"/>
+       <association property="department" javaType="com.cpj.entities.Department">
+            <id property="id" column="id"/>
+            <result property="departmentName" column="departmentName"/>
+        </association>
+
+    </resultMap>
+
+
+    <!--查询出所有员工信息-->
+    <select id="getAllemployee" resultMap="getEmployee">
+        SELECT e.id,e.lastName,e.email,e.gender,e.birth,e.did,d.id,d.departmentName
+        FROM employee e,department d
+        WHERE e.did=d.id
+    </select>
+
+    <!--通过id，查找出员工信息-->
+    <select id="getEmpId" resultMap="getEmployee">
+        SELECT e.id,e.lastName,e.email,e.gender,e.birth,e.did,d.id,d.departmentName
+        FROM employee e,department d
+        WHERE e.did=d.id and e.id=#{id}
+    </select>
+
+</mapper>
