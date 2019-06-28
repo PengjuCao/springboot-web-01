@@ -1,7 +1,7 @@
 server:
-  port: 9999
+  port: 8089
   servlet:
-    context-path: /sb
+    context-path: /login
 
 
 #指定输入的时间格式
