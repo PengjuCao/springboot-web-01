@@ -2,8 +2,6 @@ server:
   port: 8089
   servlet:
     context-path: /login
-
-
 #指定输入的时间格式
 jackson:
     #日期格式化
